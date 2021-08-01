@@ -10,7 +10,10 @@ class TaskController extends AbstractController
 {
     public function index()
     {
-        return $this->render('task/index.html.twig');
+        $contName = "TaskController";
+        return $this->render('task/index.html.twig', [
+            "controllerName" => $contName
+        ]);
     }
 
     /**
