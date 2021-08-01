@@ -10,9 +10,25 @@ class TaskController extends AbstractController
 {
     public function index()
     {
-        $contName = "TaskController";
+        $tasks = [
+            [
+                "id" => 1,
+                "title" => "math home work",
+                "description" => "math equations to complete"
+            ],
+            [
+                "id" => 2,
+                "title" => "science home work",
+                "description" => "some thing equations to complete"
+            ],
+            [
+                "id" => 3,
+                "title" => "francais home work",
+                "description" => "blah blah  equations to complete"
+            ]
+        ];
         return $this->render('task/index.html.twig', [
-            "controllerName" => $contName
+            "tasks" => $tasks
         ]);
     }
 

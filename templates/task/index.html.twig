@@ -19,12 +19,14 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
+						{% for task in tasks %}
+							<tr scope="row">
+                                <td>{{task.id}}</td>
+                                <td>{{task.title}}</td>
+                                <td>{{task.description}}</td>
+                                <td></td>
+                            </tr>
+						{% endfor %}
 					</tbody>
 				</table>
 			</div>
