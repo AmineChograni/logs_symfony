@@ -2,33 +2,36 @@
 
 namespace App\Controller;
 
+use App\Repository\TaskRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class TaskController extends AbstractController
 {
+    private $taskRepository;
+
+    public function __construct(TaskRepository $taskRepository)
+    {
+        $this->taskRepository=$taskRepository;
+    }
+
     public function index()
     {
-        $tasks = [
-            [
-                "id" => 1,
-                "title" => "math home work",
-                "description" => "math equations to complete"
-            ],
-            [
-                "id" => 2,
-                "title" => "science home work",
-                "description" => "some thing equations to complete"
-            ],
-            [
-                "id" => 3,
-                "title" => "francais home work",
-                "description" => "blah blah  equations to complete"
-            ]
-        ];
+        $tasks = $this->taskRepository->findAll();
         return $this->render('task/index.html.twig', [
             "tasks" => $tasks
+        ]);
+    }
+
+    /**
+     * @Route("/task/{id}",name="task_show")
+     */
+    public function showTask($id)
+    {
+        $task = $this->taskRepository->find($id);
+        return $this->render('task/show.html.twig', [
+            "tasks" => $task
         ]);
     }
 
@@ -41,4 +44,5 @@ class TaskController extends AbstractController
             'hello from create task'
         );
     }
+
 }
