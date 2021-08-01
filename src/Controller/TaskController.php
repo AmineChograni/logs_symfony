@@ -7,9 +7,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TaskController
 {
+    /**
+     * @Route("/Task/")
+     */
     public function index(): Response
     {
-
 
         return new Response(
             'hello symfony'
