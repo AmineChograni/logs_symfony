@@ -30,8 +30,15 @@ class TaskController extends AbstractController
     public function showTask($id)
     {
         $task = $this->taskRepository->find($id);
+
+        if (!$task) {
+            throw $this->createNotFoundException(
+                'No task found for id '.$id
+            );
+        }
+
         return $this->render('task/show.html.twig', [
-            "tasks" => $task
+            "task" => $task
         ]);
     }
 
