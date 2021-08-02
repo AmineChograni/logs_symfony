@@ -16,6 +16,9 @@ class TaskController extends AbstractController
         $this->taskRepository=$taskRepository;
     }
 
+    /**
+     * @Route("/",name="task_list")
+     */
     public function index()
     {
         $tasks = $this->taskRepository->findAll();
