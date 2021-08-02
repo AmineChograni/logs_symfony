@@ -6,6 +6,9 @@ use App\Repository\TaskRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Task;
+use App\Form\TaskType;
+use Symfony\Component\HttpFoundation\Request;
 
 class TaskController extends AbstractController
 {
@@ -46,13 +49,22 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/task/create")
+     * @Route("/create/task",name="task_create")
      */
-    public function createTask(): Response
+    public function createTask()
     {
-        return new Response(
-            'hello from create task'
-        );
+        $task = new Task();
+        // ...
+
+        $form = $this->createForm(TaskType::class, $task);
+
+        if($form->isSubmitted() && $form->isValid()){
+
+        }
+
+        return $this->render('task/add.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
 }
